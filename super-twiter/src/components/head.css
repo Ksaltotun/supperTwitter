@@ -1,0 +1,10 @@
+.headBox{
+    background-color: #7908AA;
+    color: #a52a2a;
+    grid-area: head;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 0;
+}

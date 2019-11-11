@@ -1,0 +1,9 @@
+.mainBox {
+    height: 100%;
+    display: grid;
+    grid-template-areas: "head head head"
+    "sidebar content content"
+    "footer footer footer";
+    grid-template-rows: 70px 1fr 70px;
+    grid-template-columns: 200px 1fr;
+}
