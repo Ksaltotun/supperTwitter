@@ -4,7 +4,7 @@ import './footer.css';
 const Footer = () => {
     return (
         <section className="footer">
-            Footer
+            <span>Created by Supertwitter team!</span>
         </section>
     );
 }

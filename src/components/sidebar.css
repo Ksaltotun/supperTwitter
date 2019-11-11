@@ -1,4 +1,4 @@
 .sidebar{
     grid-area: sidebar;
-    color: #B365D4;
+    display: flex;
 }

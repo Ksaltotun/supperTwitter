@@ -14,7 +14,8 @@
   "scripts": {
     "build:css": "postcss src/styles/main.css -o src/index.css",
     "watch:css": "postcss src/styles/main.css -o src/index.css -w",
-    "start": "npm-run-all -p watch:css start-js",
+    "start:Server": "json-server --watch db.json --port 3001",
+    "start": "npm-run-all -p watch:css start-js start:Server",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "build": "npm-run-all build:css build-js",
