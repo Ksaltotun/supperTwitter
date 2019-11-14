@@ -6,7 +6,7 @@ const AddNewPost = () => {
         <input
             type="button"
             className="btn btn-primary btn-lg"
-            value="Add News"
+            value="Add NeWs"
         />
     );
 }

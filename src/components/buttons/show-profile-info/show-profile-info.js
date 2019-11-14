@@ -4,7 +4,7 @@ import './show-profile-info.css';
 const ShowProfile = () =>{
     return (
         <input
-            value="ShOW PROFILE INFO"
+            value="ShOw PrOFiLe InFo"
             className="btn btn-primary btn-lg"
             type="button"
         />
