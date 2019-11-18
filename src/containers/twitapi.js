@@ -22,6 +22,26 @@ export default class twitapiService {
     })
   }
 
+  async addComment(id, data) {
+    
+    const comment = {
+      "body": data,
+      "author": "Anonimus",
+      "postId": id      
+    }
+
+    await fetch(`${this._basicUrl}comments`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(comment)
+    })
+    
+  }
+
+
   async deleteData(postId) {
     await fetch(`${this._basicUrl}posts/${postId}`, {
       method: 'DELETE',

@@ -15,8 +15,8 @@ export default class NewsBoard extends Component {
         newPost: null,
         refresh: null
     }
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.renderPosts();
     }
     renderPosts() {
@@ -39,9 +39,9 @@ export default class NewsBoard extends Component {
         this.twitapi.deleteData(id);
     };
 
-    showCommentDialog = () => {
+    showCommentDialog = (id) => {
         this.setState({
-            newComment:<NewComment props={[this.hideCommentDialog, this.pushComment]}/>
+            newComment:<NewComment props={[this.hideCommentDialog, this.pushComment, id]}/>
         })
     }
 
@@ -51,8 +51,9 @@ export default class NewsBoard extends Component {
         })
     }
 
-    pushComment = () => {
-        console.log('push comment!');
+    pushComment = (a,b) => {
+        this.twitapi.addComment(a,b);
+        this.hideCommentDialog();
     }
 
     IsPostAdded = () => {
@@ -61,6 +62,8 @@ export default class NewsBoard extends Component {
                 newPost: 'added'
             });
     }
+
+    
 
     componentDidUpdate(){
        

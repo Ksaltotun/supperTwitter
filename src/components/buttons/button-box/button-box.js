@@ -6,11 +6,11 @@ import './buttons-box.css';
 
 export default class ButtonsBox extends Component{
     render () {
-        const {props:[okButton, noButton, getData]} = this.props;
-       
+        const {props:[okButton, noButton, getData, id]} = this.props;
+        
         return (
             <div className="buttonsbox">
-                <Acept props={[okButton, getData]}/> <Decline props={noButton}/>
+                <Acept props={[okButton, getData, id]}/> <Decline props={noButton}/>
             </div>
         );
     }

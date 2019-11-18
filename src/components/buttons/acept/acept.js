@@ -8,7 +8,7 @@ export default class Acept extends Component {
 
 
     render (){
-        const{props:[okButton, getData]} = this.props;
+        const{props:[okButton, getData, id]} = this.props;
        
         return (
             <button
@@ -17,8 +17,8 @@ export default class Acept extends Component {
                 className="btn btn-outline-success"
                 onClick={(e) => {
                     const {title, body} = getData();
-                    okButton(title, body);
-                
+                    okButton(title || id, body);
+                                    
                 }}
             >
                 <FontAwesomeIcon icon={faCheckCircle} />

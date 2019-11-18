@@ -7,13 +7,14 @@ import './new-comment.css';
 export default class NewComment extends Component {
     
     render(){
-        const {props:[showCommentDialog, id]} = this.props;
+        const {props:[showCommentDialog, ...rest]} = this.props;
+        const [func, id] = rest;
         
         return (
             <button
                 type="button"
                 className="btn btn-outline-info"
-                onClick={()=>showCommentDialog()}
+                onClick={()=>showCommentDialog(id)}
                 >
                 <FontAwesomeIcon icon={faComment} />
             </button>
