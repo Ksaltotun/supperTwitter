@@ -4,7 +4,20 @@ import ButtonsBox from '../../buttons/button-box';
 import './new-post-dialog.css';
 
 export default class NewPostDialog extends Component {
+
+    getData = () => {
+        const datas = {
+            body: document.getElementById('newpostdata').value,
+            title: document.getElementById('postthema').value
+        }
+        
+        return datas
+    }
+
     render() {
+        
+        const {props:[okButton, noButton]} = this.props;
+        
         return (
             <form className="newpost jumbotron">
                 <h2>Write new post:</h2>
@@ -13,13 +26,13 @@ export default class NewPostDialog extends Component {
                     <input type="text" 
                     className="form-control" 
                     placeholder="Write posts theme here" 
-                    id="inputDefault"></input>
+                    id="postthema"></input>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleTextarea">What new?</label>
-                    <textarea className="form-control"  rows="3" ></textarea>
+                    <label htmlFor="newPost">What new?</label>
+                    <textarea className="form-control" id="newpostdata"  rows="3" ></textarea>
                 </div>
-                <ButtonsBox/>
+                <ButtonsBox props={[okButton, noButton, this.getData]} />
             </form>
         );
     }

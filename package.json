@@ -13,10 +13,9 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "build:css": "postcss src/styles/main.css -o src/index.css",
-    "watch:css": "postcss src/styles/main.css -o src/index.css -w",
+    "build:css": " src/styles/main.css -o src/index.css",
     "start:Server": "json-server --watch db.json --port 3001",
-    "start": "npm-run-all -p watch:css start-js start:Server",
+    "start": "npm-run-all -p start-js start:Server",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "build": "npm-run-all build:css build-js",

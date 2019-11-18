@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import SideButtons from './side-bar-buttons';
 
 import './side-bar.css';
 
-const Sidebar = () => {
-    return (
-        <section className="sidebar">
-            <SideButtons/>
-        </section>
-    );
-}
 
-export default Sidebar
+export default class Sidebar extends Component {
+    render () {
+       
+        return (
+            <section className="sidebar">
+                <SideButtons {...this.props}/>
+            </section>
+        );        
+    }
+}
