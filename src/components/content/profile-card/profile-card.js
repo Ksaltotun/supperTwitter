@@ -30,14 +30,14 @@ export default class ProfileCard extends Component {
 
     render () {
         const {userName, description} = this.state;
-        const {props:hideCard} = this.props;
+        
         return (
             <div className="card text-white bg-info mb-3 profilecard">
                 <div className="card-header">{userName}</div>
                 <div className="card-body">
                     <h4 className="card-title">{description}</h4>
                 </div>
-            <OkButton props={hideCard}/>
+            <OkButton onHideProfile={this.props.onHideProfileInfo}/>
             </div>
         );
     }

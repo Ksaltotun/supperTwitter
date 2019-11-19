@@ -2,9 +2,9 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "body": "React is awesome!!"
+      "title": "Impotrant news",
+      "author": "Fake",
+      "body": "Balls are not round"
     },
     {
       "id": 2,
@@ -13,60 +13,48 @@
       "body": "Balls are not round"
     },
     {
-      "title": "fffffffffffffff",
-      "body": "fffffffffffffffffffffffffffffff",
-      "author": "Anonimus",
-      "id": 3
+      "id": 3,
+      "title": "Impotrant news",
+      "author": "Fake",
+      "body": "Balls are not round"
     },
     {
-      "title": "jjjjjjjjjjjjjjjj",
-      "body": "jjjjjjjjjjjjjjjjjjjjjjjjjjj",
-      "author": "Anonimus",
-      "id": 4
+      "id": 4,
+      "title": "Impotrant news",
+      "author": "Fake",
+      "body": "Balls are not round"
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": "1",
-      "author": "Anonimus"
-    },
-    {
-      "body": "dddddddddddddddddd",
-      "postId": 1,
-      "author": "Anonimus",
-      "id": 2
-    },
-    {
-      "body": "dddddddddddddddddddddddddddddddddddddddddddddd",
-      "author": "Anonimus",
-      "postId": 1,
-      "id": 3
-    },
-    {
       "body": "mmmmmmmmmmmmmmmmmmm",
       "author": "Anonimus",
-      "postId": 2,
+      "postId": 1,
       "id": 5
     },
     {
       "body": "sssssssssssssssssssssssssssssss",
       "author": "Anonimus",
-      "postId": 2,
+      "postId": 1,
       "id": 6
     },
     {
       "body": "dddddddddddddd",
       "author": "Anonimus",
-      "postId": 2,
+      "postId": 1,
       "id": 7
     },
     {
-      "body": "ddddddddddddddddddddddddddddddddd",
+      "body": "dddddddddd\nsddddddddddddddddddddddddddddd",
       "author": "Anonimus",
-      "postId": 1,
+      "postId": 2,
       "id": 9
+    },
+    {
+      "body": "ddddddddddddddddddd",
+      "author": "Anonimus",
+      "postId": 4,
+      "id": 10
     }
   ],
   "profile": {

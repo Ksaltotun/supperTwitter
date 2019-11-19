@@ -12,42 +12,40 @@ class App extends Component {
     state = {
         newComment:null,
         showDialog: null,
-        showProfile: null,
+        showProfile: false,
         refresher: null,
         board:null
     }
         
     renderBoard = () => {
         this.setState({
-            board:<NewsBoard props={this.state.refresher}/>
+            board: true
         });
     }
 
-    renderDialog = () => {
+    handlerRenderDialog = () => {
+       
+    }
+
+    handlerRenderProfile = () => {
         this.setState({
-            showDialog:<NewPostDialog props={[this.pushData, this.hidePostDialog]}/>
+            showProfile:true
         })
     }
 
-    renderProfile = () => {
-        this.setState({
-            showProfile:<ProfileCard props={this.hideProfileInfo}/>
-        })
-    }
-
-    hideProfileInfo = () => {
+    handlerHideProfileInfo = () => {
         this.setState({
             showProfile:null
         })
     }
 
-    hidePostDialog = () => {
+    handHidePostDialog (){
         this.setState({
-            showDialog:null
+            newPost:null
         }) 
     }
 
-    pushData = (title, text, author = 'Anonimus') => {
+    pushData (title, text, author = 'Anonimus'){
         const twitapi = new twitapiService();
         const data = {
             'title':title,
@@ -56,23 +54,37 @@ class App extends Component {
         };
         twitapi.pushData('posts', data);
         this.hidePostDialog();
-        this.renderBoard();
     }
 
     componentDidMount (){
-        this.renderBoard();
+        this.setState({
+            board: <NewsBoard/>
+        })
+    }
+
+    showProfile = () => {
+        if (this.state.showProfile) {return (
+            <ProfileCard onHideProfileInfo = {this.handlerHideProfileInfo}/>
+        )} else return null
+    }
+
+    showBoard = () => {
+        if (this.state.board) {return (
+            <NewsBoard/>
+        )} else return null
     }
 
     render() {
-        
-        const {showDialog, showProfile, board} = this.state;
+        const sidebarProps = {
+            onRenderDialog:this.handlerRenderDialog,
+            onRenderProfile:this.handlerRenderProfile,
+        }
         return (
             <section className="app">
             <Header/>
-            {board}
-            {showDialog}
-            {showProfile}
-            <Sidebar props={[this.renderDialog, this.renderProfile]}/>
+            {this.showBoard ()}
+            {this.showProfile ()}
+            <Sidebar {...sidebarProps}/>
             <Footer/>
             </section>
         );

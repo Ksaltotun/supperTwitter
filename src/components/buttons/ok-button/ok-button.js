@@ -7,12 +7,11 @@ import './ok-button.css'
 export default class OkButton extends Component {
     render () {
 
-        const {props:hideCard} = this.props;
         return (
             <button
              type="button"
              className="btn btn-success"
-             onClick={()=>hideCard()}
+             onClick={()=>this.props.onHideProfile()}
              >
                 <FontAwesomeIcon icon={faThumbsUp}/>
             </button>

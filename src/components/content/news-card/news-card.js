@@ -7,7 +7,7 @@ import concatCommentsAndPosts from '../../../containers/comment-post'
 
 import './news-card.css';
 
-export default class Post extends Component {
+export default class NewsCard extends Component {
     state = {
         comments: null,
         isCommentsShow: false,

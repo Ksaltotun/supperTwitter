@@ -8,21 +8,24 @@ export default class Acept extends Component {
 
 
     render (){
-        const{props:[okButton, getData, id]} = this.props;
-       
+        
+        const {idForComment, onPushCommentDialog, getData} = this.props;
         return (
-            <button
-                
+            <button                
                 type="button"
                 className="btn btn-outline-success"
                 onClick={(e) => {
                     const {title, body} = getData();
-                    okButton(title || id, body);
-                                    
+                    onPushCommentDialog(title || idForComment, body);
                 }}
             >
                 <FontAwesomeIcon icon={faCheckCircle} />
             </button>
+            
         );
     }
 }
+
+/*
+
+*/

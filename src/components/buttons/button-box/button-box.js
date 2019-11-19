@@ -6,11 +6,18 @@ import './buttons-box.css';
 
 export default class ButtonsBox extends Component{
     render () {
-        const {props:[okButton, noButton, getData, id]} = this.props;
+        const {idForComment, onHideCommentDialog, onPushCommentDialog, getData} = this.props;
         
         return (
             <div className="buttonsbox">
-                <Acept props={[okButton, getData, id]}/> <Decline props={noButton}/>
+                <Acept 
+                idForComment = {idForComment}
+                onPushCommentDialog = {onPushCommentDialog}
+                getData = {getData}
+                /> 
+                <Decline 
+                onHideCommentDialog = {onHideCommentDialog}
+                />
             </div>
         );
     }
