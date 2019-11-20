@@ -9,30 +9,32 @@ export default class NewsBoard extends Component {
 
     twitapi = new twitapiService();
     state = {
-        posts: [],
+        postsRendered: null,
         newComment: null,
         newPost: null,
     }
-    
-    renderPosts() {
-        this.twitapi
-            .getPosts()
-            .then((resp) => {
-                this.setState({
-                    posts: [...resp].map((post) => {
-                        //title, author, body, deleteFunc, showCommentDialog, hideCommentDialog
-                        return (
-                            <NewsCard
-                             key = {post.id}
-                             id = {post.id}
-                             title = {post.title}
-                             body = {post.body} 
-                             deleteFunc = {this.handlerDeletePost}
-                             showCommentDialog = {this.handlerShowCommentDialog}/>
-                        );
-                    })
-                });
-            });
+    constructor() {
+        super();
+
+        this.postsList = [];
+    }
+    //title, author, body, deleteFunc, showCommentDialog, hideCommentDialog
+    async renderPosts() {
+        const resp = await this.twitapi.getPosts();
+        const posts = await resp.map((post) => {
+            return (<NewsCard
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                author={post.author}
+                body={post.body}
+                deleteFunc={this.handlerDeletePost}
+                showCommentDialog={this.handlerShowCommentDialog} />)
+        })
+        this.postsList = [...posts];
+        this.setState({
+            postsRendered: this.postsList.length
+        });
     }
 
     hidePostDialog = () => {
@@ -50,17 +52,18 @@ export default class NewsBoard extends Component {
         };
         twitapi.pushData('posts', data);
         this.handlerHideCommentDialog();
-
     }
 
     handlerDeletePost = (id) => {
-        const newState = [...this.state.posts].filter((post) => {
-            return post.id !== id;
+        const buffArray = this.postsList.filter((post) => {
+            return post.key.toString() !== id.toString()
         });
-        this.setState({
-            posts: [...newState]
-        });
+
+        this.postsList = [...buffArray];
         this.twitapi.deleteData(id);
+        this.setState({
+            postsRendered: this.state.postsRendered - 1
+        })
     };
 
     handlerShowCommentDialog = (id) => {
@@ -73,7 +76,6 @@ export default class NewsBoard extends Component {
         this.setState({
             newComment: null
         })
-        
     }
 
     handlerPushComment = async (id, text) => {
@@ -81,30 +83,27 @@ export default class NewsBoard extends Component {
         this.handlerHideCommentDialog();
     }
 
-    IsPostAdded = () => {
-        this.setState(
-            {
-                newPost: 'added'
-            });
+    componentDidMount() {
+        this.renderPosts();
     }
 
-    componentDidMount () {
-        this.renderPosts();          
+    componentDidUpdate(){
+        console.log(this.props)
     }
 
     render() {
-        const { newPost, newComment, posts } = this.state;
-
-    return(
-        <section className = "newsBoard " >
-            {posts}
-            {  newComment === null ? null: <CommentDialog
-            onHideCommentDialog = {this.handlerHideCommentDialog}
-            onPushComment = {this.handlerPushComment}
-            idForComment = {newComment}
-            />}
-            {newPost === null ? null : <NewsCard/>}
-        </section>
+        const { newPost, newComment, postsRendered } = this.state;
+        
+        return (
+            <section className="newsBoard " >
+                {postsRendered === null ? null : this.postsList}
+                {newComment === null ? null : <CommentDialog
+                    onHideCommentDialog={this.handlerHideCommentDialog}
+                    onPushComment={this.handlerPushComment}
+                    idForComment={newComment}
+                />}
+                {newPost === null ? null : <NewsCard />}
+            </section>
         );
     };
 }

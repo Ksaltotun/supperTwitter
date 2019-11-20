@@ -10,7 +10,7 @@ export default class SideButtons extends Component {
         return (
             <div className="sideButtons">
                 <AddNewPost onShowDialog={this.props.onRenderDialog} />
-                <ShowProfile props={this.props.onRenderProfile} />
+                <ShowProfile onRenderProfile={this.props.onRenderProfile} />
             </div>
         );
     }

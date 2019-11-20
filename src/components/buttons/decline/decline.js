@@ -6,13 +6,13 @@ import './decline.css';
 
 export default class Decline extends Component {
     render (){
-        const {props} = this.props;
-        
+       const {onHideCommentDialog} = this.props;
+        console.log(onHideCommentDialog)
         return (
             <button
                 type="button"
                 className="btn btn-outline-danger"
-                onClick={() => props()}
+                onClick={() =>onHideCommentDialog()}
             >
                 <FontAwesomeIcon icon={faBan} />
             </button>

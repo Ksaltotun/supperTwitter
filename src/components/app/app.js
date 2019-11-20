@@ -16,6 +16,10 @@ class App extends Component {
         refresher: null,
         board:null
     }
+    constructor () {
+        super();
+        this.newPostDialog = null 
+    }
         
     renderBoard = () => {
         this.setState({
@@ -24,7 +28,10 @@ class App extends Component {
     }
 
     handlerRenderDialog = () => {
-       
+       this.newPostDialog = <NewPostDialog/>
+       this.setState({
+           showDialog: true
+       })
     }
 
     handlerRenderProfile = () => {
@@ -58,7 +65,7 @@ class App extends Component {
 
     componentDidMount (){
         this.setState({
-            board: <NewsBoard/>
+            board: true
         })
     }
 
@@ -68,9 +75,11 @@ class App extends Component {
         )} else return null
     }
 
-    showBoard = () => {
+    showBoard = (newPostDialog) => {
         if (this.state.board) {return (
-            <NewsBoard/>
+            <NewsBoard 
+            newPostDialog={newPostDialog}
+            />
         )} else return null
     }
 
@@ -82,7 +91,7 @@ class App extends Component {
         return (
             <section className="app">
             <Header/>
-            {this.showBoard ()}
+            {this.showBoard (this.newPostDialog)}
             {this.showProfile ()}
             <Sidebar {...sidebarProps}/>
             <Footer/>
