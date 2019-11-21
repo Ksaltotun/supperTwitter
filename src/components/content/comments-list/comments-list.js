@@ -1,21 +1,16 @@
-import React, {Component} from 'react';
-import CommentCard from '../comment-card'
+import React, {Component} from "react";
+import CommentCard from "../comment-card";
 
-import './comments-list.css';
+import "./comments-list.css";
 
 export default class CommentsList extends Component {
-  render () {
+  render() {
     const {props} = this.props;
-    
-    const comments = props.map((comment) => {
-      return <CommentCard key={comment.id} {...comment}/>
-    })
-    
-    return (
-    <div>
-      {comments}
-    </div>
-      
-    );
+
+    const comments = props.map(comment => {
+      return <CommentCard key={comment.id} {...comment} />;
+    });
+
+    return <div>{comments}</div>;
   }
 }
