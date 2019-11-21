@@ -1,0 +1,9 @@
+.jumbotron{
+    width: 90%;
+    margin-left: 10px;
+}
+
+h2{
+    display: flex;
+    justify-content: space-between;
+}
