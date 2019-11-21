@@ -16,7 +16,7 @@ export default class NewPostDialog extends Component {
 
     render() {
         
-        const {props:[okButton, noButton]} = this.props;
+       const {onPushData, onHidePostDialog} = this.props;
         
         return (
             <form className="newpost jumbotron">
@@ -32,7 +32,11 @@ export default class NewPostDialog extends Component {
                     <label htmlFor="newPost">What new?</label>
                     <textarea className="form-control" id="newpostdata"  rows="3" ></textarea>
                 </div>
-                <ButtonsBox props={[okButton, noButton, this.getData]} />
+                <ButtonsBox 
+                onPushData={onPushData}
+                onHidePostDialog = {onHidePostDialog}
+                getData = {this.getData}
+                 />
             </form>
         );
     }

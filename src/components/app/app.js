@@ -27,8 +27,9 @@ class App extends Component {
         });
     }
 
-    handlerRenderDialog = () => {
-       this.newPostDialog = <NewPostDialog/>
+    handleShowProfile = () => {
+       this.newPostDialog = <NewPostDialog onPushData = {this.handlerPushData} 
+       onHidePostDialog={this.handlerHidePostDialog} />
        this.setState({
            showDialog: true
        })
@@ -46,21 +47,26 @@ class App extends Component {
         })
     }
 
-    handHidePostDialog (){
+    handlerHidePostDialog = () => {
         this.setState({
             newPost:null
         }) 
+        this.newPostDialog = null;
+        
     }
 
-    pushData (title, text, author = 'Anonimus'){
+    handlerPushData = async (title, text, author = 'Anonimus') => {
         const twitapi = new twitapiService();
         const data = {
             'title':title,
             'body':text,
             'author':author
         };
-        twitapi.pushData('posts', data);
-        this.hidePostDialog();
+        await twitapi.pushData('posts', data);
+        this.handlerHidePostDialog();
+        this.setState({
+            refresher: new Date()
+        });
     }
 
     componentDidMount (){
@@ -75,23 +81,22 @@ class App extends Component {
         )} else return null
     }
 
-    showBoard = (newPostDialog) => {
+    showBoard = () => {
         if (this.state.board) {return (
-            <NewsBoard 
-            newPostDialog={newPostDialog}
-            />
+            <NewsBoard refresher = {this.state.refresher}/>
         )} else return null
     }
 
     render() {
         const sidebarProps = {
-            onRenderDialog:this.handlerRenderDialog,
+            onRenderDialog:this.handleShowProfile,
             onRenderProfile:this.handlerRenderProfile,
         }
         return (
             <section className="app">
             <Header/>
-            {this.showBoard (this.newPostDialog)}
+            {this.newPostDialog}
+            {this.showBoard ()}
             {this.showProfile ()}
             <Sidebar {...sidebarProps}/>
             <Footer/>
@@ -101,5 +106,4 @@ class App extends Component {
 }
 
 export default App
-
 

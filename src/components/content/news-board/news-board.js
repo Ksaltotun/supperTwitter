@@ -11,7 +11,7 @@ export default class NewsBoard extends Component {
     state = {
         postsRendered: null,
         newComment: null,
-        newPost: null,
+        refresher: null,
     }
     constructor() {
         super();
@@ -35,23 +35,6 @@ export default class NewsBoard extends Component {
         this.setState({
             postsRendered: this.postsList.length
         });
-    }
-
-    hidePostDialog = () => {
-        this.setState({
-            newPost: null
-        })
-    }
-
-    pushData = (title, text, author = 'Anonimus') => {
-        const twitapi = new twitapiService();
-        const data = {
-            'title': title,
-            'body': text,
-            'author': author
-        };
-        twitapi.pushData('posts', data);
-        this.handlerHideCommentDialog();
     }
 
     handlerDeletePost = (id) => {
@@ -87,12 +70,18 @@ export default class NewsBoard extends Component {
         this.renderPosts();
     }
 
-    componentDidUpdate(){
-        console.log(this.props)
+    componentDidUpdate() {
+        if (this.state.refresher !== this.props.refresher) {
+           
+            this.setState({
+                refresher:this.props.refresher
+            })
+            this.renderPosts();
+        }
     }
 
     render() {
-        const { newPost, newComment, postsRendered } = this.state;
+        const { newComment, postsRendered } = this.state;
         
         return (
             <section className="newsBoard " >
@@ -102,7 +91,7 @@ export default class NewsBoard extends Component {
                     onPushComment={this.handlerPushComment}
                     idForComment={newComment}
                 />}
-                {newPost === null ? null : <NewsCard />}
+               
             </section>
         );
     };
