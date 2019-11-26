@@ -99,7 +99,7 @@ class App extends Component {
       <section className="app">
         <Header />
         {this.newPostDialog}
-        {this.renderBoard()}
+        {this.showBoard()}
         {this.renderProfile()}
         <Sidebar {...sidebarProps} />
         <Footer />
